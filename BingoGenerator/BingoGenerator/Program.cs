@@ -1,7 +1,7 @@
 ﻿var numbers = new int[15];
 var random = new Random();
-var lowestNumber = 10;
-var highestNumber = 20;
+var lowestNumber = 1;
+var highestNumber = 10;
 
 for (int i = 0; i < numbers.Length; i++)
 {
@@ -9,6 +9,7 @@ for (int i = 0; i < numbers.Length; i++)
     if(i > 0)
     {
         bool repeated;
+
         do
         {
             repeated = false;
@@ -23,9 +24,8 @@ for (int i = 0; i < numbers.Length; i++)
             }
         }
         while (repeated);
-        
         do
-        {   
+        {
             var aux = candidate;
             var candidateTens = 0;
             while (aux >= 10)
@@ -34,7 +34,7 @@ for (int i = 0; i < numbers.Length; i++)
                 candidateTens++;
             }
 
-            var numbersWithinThisTens = 1; //El que estoy queriendo insertar
+            var numbersWithinThisTens = 0;
             var numberTens = 0;
             for (int j = 0; j < i; j++)
             {
@@ -49,9 +49,13 @@ for (int i = 0; i < numbers.Length; i++)
                 if (numberTens == candidateTens)
                     numbersWithinThisTens++;
             }
-            if (numbersWithinThisTens < 3)
+            if (numbersWithinThisTens < 2)
             {
                 numbers[i] = candidate;
+            }
+            else
+            {
+                candidate = random.Next(1, 90);
             }
         }
         while (numbers[i] == 0);
@@ -61,14 +65,18 @@ for (int i = 0; i < numbers.Length; i++)
         numbers[i] = candidate;
     }
 
-    if(highestNumber < 100)
+    if(highestNumber < 90)
     {
-        lowestNumber += 10;
+        if (lowestNumber == 1)
+            lowestNumber += 9;
+        else
+            lowestNumber += 10;
+
         highestNumber = lowestNumber + 10;
     }
-    else if(lowestNumber != 10)
+    else if(lowestNumber != 1)
     {
-        lowestNumber = 10;
+        lowestNumber = 1;
     }
 }
 
@@ -85,14 +93,14 @@ for (int i = 0; i < numbers.Length; i++)
         tens++;
     }
 
-    var column = tens - 1;
+    var column = tens;
     var randomRow = random.Next(3);
 
     do
     {
         if (string.IsNullOrEmpty(carton[column, randomRow]))
         {
-            carton[column, randomRow] = numbers[i].ToString();
+            carton[column, randomRow] = numbers[i].ToString().PadLeft(2, '0');
         }
         else
         {
