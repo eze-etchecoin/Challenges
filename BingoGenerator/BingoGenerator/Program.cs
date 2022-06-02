@@ -49,7 +49,7 @@ for (int i = 0; i < numbers.Length; i++)
                 if (numberTens == candidateTens)
                     numbersWithinThisTens++;
             }
-            if (numbersWithinThisTens < 2)
+            if (numbersWithinThisTens < 3)
             {
                 numbers[i] = candidate;
             }
