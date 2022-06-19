@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHubReposEzeEtchecoin\\Challenges\\BingoGenerator\\BingoGenerator\\BingoGenerator.csproj": {}
+    "C:\\GitHubRepos\\my-repos\\Challenges\\BingoGenerator\\BingoGenerator\\BingoGenerator.csproj": {}
   },
   "projects": {
-    "C:\\GitHubReposEzeEtchecoin\\Challenges\\BingoGenerator\\BingoGenerator\\BingoGenerator.csproj": {
+    "C:\\GitHubRepos\\my-repos\\Challenges\\BingoGenerator\\BingoGenerator\\BingoGenerator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHubReposEzeEtchecoin\\Challenges\\BingoGenerator\\BingoGenerator\\BingoGenerator.csproj",
+        "projectUniqueName": "C:\\GitHubRepos\\my-repos\\Challenges\\BingoGenerator\\BingoGenerator\\BingoGenerator.csproj",
         "projectName": "BingoGenerator",
-        "projectPath": "C:\\GitHubReposEzeEtchecoin\\Challenges\\BingoGenerator\\BingoGenerator\\BingoGenerator.csproj",
-        "packagesPath": "C:\\Users\\Incluit\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHubReposEzeEtchecoin\\Challenges\\BingoGenerator\\BingoGenerator\\obj\\",
+        "projectPath": "C:\\GitHubRepos\\my-repos\\Challenges\\BingoGenerator\\BingoGenerator\\BingoGenerator.csproj",
+        "packagesPath": "C:\\Users\\ezequ\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHubRepos\\my-repos\\Challenges\\BingoGenerator\\BingoGenerator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Incluit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ezequ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

@@ -1,114 +1,126 @@
-﻿var numbers = new int[15];
-var random = new Random();
-var lowestNumber = 1;
-var highestNumber = 10;
+﻿/*
+Ejercicio: generar un cartón válido para jugar al bingo. Las condiciones son:
+1 - Quince números del 1 al 89 inclusive
+2 - Un cartón de 9 columnas x 3 filas
+3 - Cada columna contiene 1 decena particular. Por ejemplo, la 1ra columna puede contener números del 1 al 9 inclusive,
+    la 2da del 10 al 19 inclusive, etc.
+4 - 
+*/
 
-for (int i = 0; i < numbers.Length; i++)
+var numeros = new int[15];
+var random = new Random();
+var menorNumero = 1;
+var mayorNumero = 10;
+
+for (int i = 0; i < numeros.Length; i++)
 {
-    var candidate = random.Next(lowestNumber, highestNumber);
-    if(i > 0)
+    var candidato = random.Next(menorNumero, mayorNumero);
+   
+ if(i > 0)
     {
-        bool repeated;
+        bool esRepetido;
 
         do
         {
-            repeated = false;
+            esRepetido = false;
             for (int j = 0; j < i; j++)
             {
-                if (candidate == numbers[j])
-                    repeated = true;
+                if (candidato == numeros[j])
+                    esRepetido = true;
             }
-            if (repeated)
+            if (esRepetido)
             {
-                candidate = random.Next(lowestNumber, highestNumber);
-            }
+                candidato = random.Next(menorNumero, mayorNumero);
+   
+         }
         }
-        while (repeated);
+        while (esRepetido);
         do
         {
-            var aux = candidate;
-            var candidateTens = 0;
+            var aux = candidato;
+            var decenasDelCandidato = 0;
             while (aux >= 10)
             {
                 aux -= 10;
-                candidateTens++;
+                decenasDelCandidato++;
             }
 
-            var numbersWithinThisTens = 0;
-            var numberTens = 0;
+            var numerosEnEstaDecena = 0;
+            var decenasDelNumeroExistente = 0;
             for (int j = 0; j < i; j++)
             {
                 //Recorro los elementos que tengo, y me fijo que no tenga más de 3 números con la misma
                 //cantidad de decenas
-                aux = numbers[j];
+                aux = numeros[j];
                 while (aux >= 10)
                 {
                     aux -= 10;
-                    numberTens++;
+                    decenasDelNumeroExistente++;
                 }
-                if (numberTens == candidateTens)
-                    numbersWithinThisTens++;
+                if (decenasDelNumeroExistente == decenasDelCandidato)
+                    numerosEnEstaDecena++;
             }
-            if (numbersWithinThisTens < 3)
+            if (numerosEnEstaDecena < 3)
             {
-                numbers[i] = candidate;
+                numeros[i] = candidato;
             }
             else
             {
-                candidate = random.Next(1, 90);
+                candidato = random.Next(1, 90);
             }
         }
-        while (numbers[i] == 0);
+        while (numeros[i] == 0);
     }
     else
     {
-        numbers[i] = candidate;
+        numeros[i] = candidato;
     }
 
-    if(highestNumber < 90)
+    if(mayorNumero < 90)
+
     {
-        if (lowestNumber == 1)
-            lowestNumber += 9;
+        if (menorNumero == 1)
+            menorNumero += 9;
         else
-            lowestNumber += 10;
+            menorNumero += 10;
 
-        highestNumber = lowestNumber + 10;
+        mayorNumero = menorNumero + 10;
     }
-    else if(lowestNumber != 1)
+    else if(menorNumero != 1)
     {
-        lowestNumber = 1;
+        menorNumero = 1;
     }
 }
 
 var carton = new string[9, 3];
 
-for (int i = 0; i < numbers.Length; i++)
+for (int i = 0; i < numeros.Length; i++)
 {
     //Verifico en qué columna va el número
-    var aux = numbers[i];
-    var tens = 0;
+    var aux = numeros[i];
+    var decenas = 0;
     while (aux >= 10)
     {
         aux -= 10;
-        tens++;
+        decenas++;
     }
 
-    var column = tens;
-    var randomRow = random.Next(3);
+    var columna = decenas;
+    var filaAleatoria = random.Next(3);
 
     do
     {
-        if (string.IsNullOrEmpty(carton[column, randomRow]))
+        if (string.IsNullOrEmpty(carton[columna, filaAleatoria]))
         {
-            carton[column, randomRow] = numbers[i].ToString().PadLeft(2, '0');
+            carton[columna, filaAleatoria] = numeros[i].ToString().PadLeft(2, '0');
         }
         else
         {
-            randomRow = random.Next(3);
+            filaAleatoria = random.Next(3);
         }
     }
-    while (string.IsNullOrEmpty(carton[column, randomRow]) || 
-           int.Parse(carton[column, randomRow]) != numbers[i]);
+    while (string.IsNullOrEmpty(carton[columna, filaAleatoria]) || 
+           int.Parse(carton[columna, filaAleatoria]) != numeros[i]);
 }
 for (int i = 0; i < 9; i++)
 {
